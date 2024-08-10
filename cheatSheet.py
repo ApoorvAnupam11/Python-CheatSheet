@@ -194,6 +194,48 @@ li[-1]  # => 3
 # Looking out of bounds is an IndexError
 li[4]  # Raises an IndexError
 
+# Remove arbitrary elements from a list with "del"
+del li[2]  # li is now [1, 2, 3], before it was [1, 2, 4, 3]
+
+# Remove first occurrence of a value
+li.remove(2)  # li is now [1, 3]
+li.remove(2)  # Raises a ValueError as 2 is not in the list
+
+# Insert an element at a specific index, signature is insert(index, value)
+li.insert(1, 2)  # li is now [1, 2, 3] again
+
+# Get the index of the first item found matching the argument
+li.index(2)  # => 1
+li.index(4)  # Raises a ValueError as 4 is not in the list
+
+# count() method is used to return the number of occurrences of an element in a list
+li.count(2)  # => 1
+
+# reverse() method helps in reverse-sing the elements of a given list
+os = ['Windows', 'macOS', 'Linux']
+os.reverse() # Updated List: ['Linux', 'macOS', 'Windows']
+
+# You can add lists
+# Note: values for li and for other_li are not modified.
+li + other_li  # => [1, 2, 3, 4, 5, 6]
+
+# Creates a new list that is the result of concatenating li and other_li.
+# Result: [1, 2, 3, 4, 5, 6] (but does not modify the original lists).
+# Side Effects: No modification to li or other_li.
+
+# Concatenate lists with "extend()"
+li.extend(other_li)  # Now li is [1, 2, 3, 4, 5, 6]
+
+# Extends li by appending all elements from other_li to it.
+# Result: li is modified in place to include all elements from other_li,becoming [1, 2, 3, 4, 5, 6].
+# Side Effects: li is modified, but other_li remains unchanged.
+
+# Check for existence in a list with "in"
+1 in li  # => True
+
+# Examine the length with "len()"
+len(li)  # => 6
+
 # You can look at ranges with slice syntax.
 # The start index is included, the end index is not
 # (It's a closed/open range for you mathy types.)
@@ -207,7 +249,6 @@ li[::-1]  # Return list in reverse order => [3, 4, 2, 1]
 
 # Make a shallow copy using slices
 li2 = li[:]  # => li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
-
 
 #Special Concepts needed here to understand shallow copy
 '''
@@ -281,35 +322,6 @@ li2 = copy.deepcopy(li)  # Deep copy
 li2[0][0] = 99
 print(li)   # Output: [[1, 2], [3, 4]]
 print(li2)  # Output: [[99, 2], [3, 4]]
-
-
-# Remove arbitrary elements from a list with "del"
-del li[2]  # li is now [1, 2, 3]
-
-# Remove first occurrence of a value
-li.remove(2)  # li is now [1, 3]
-li.remove(2)  # Raises a ValueError as 2 is not in the list
-
-# Insert an element at a specific index
-li.insert(1, 2)  # li is now [1, 2, 3] again
-
-# Get the index of the first item found matching the argument
-li.index(2)  # => 1
-li.index(4)  # Raises a ValueError as 4 is not in the list
-
-# You can add lists
-# Note: values for li and for other_li are not modified.
-li + other_li  # => [1, 2, 3, 4, 5, 6]
-
-# Concatenate lists with "extend()"
-li.extend(other_li)  # Now li is [1, 2, 3, 4, 5, 6]
-
-# Check for existence in a list with "in"
-1 in li  # => True
-
-# Examine the length with "len()"
-len(li)  # => 6
-
 
 # Tuples are like lists but are immutable.
 tup = (1, 2, 3)
