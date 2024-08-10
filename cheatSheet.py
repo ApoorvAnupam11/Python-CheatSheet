@@ -205,8 +205,83 @@ li[::-1]  # Return list in reverse order => [3, 4, 2, 1]
 # Use any combination of these to make advanced slices
 # li[start:end:step]
 
-# Make a one layer deep copy using slices
+# Make a shallow copy using slices
 li2 = li[:]  # => li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
+
+
+#Special Concepts needed here to understand shallow copy
+'''
+In Python, objects can generally be classified into two categories: mutable and immutable. 
+The distinction is important because it affects how objects behave when they are modified.
+
+=>Immutable Objects:
+Immutable objects cannot be altered after they are created. If you try to change an immutable object, 
+you’ll actually create a new object in memory.
+
+Common Immutable Types:
+Integers: int
+Example: x = 10
+Floats: float
+Example: y = 3.14
+Strings: str
+Example: s = "hello"
+Tuples: tuple
+Example: t = (1, 2, 3)
+Booleans: bool
+Example: b = True
+Frozen Sets: frozenset
+Example: fs = frozenset([1, 2, 3])
+Bytes: bytes
+Example: b = b'hello'
+
+
+=>Mutable Objects:
+Mutable objects can be changed in place after they are created. This means you can modify their 
+content without creating a new object.
+
+Common Mutable Types:
+Lists: list
+Example: li = [1, 2, 3]
+Dictionaries: dict
+Example: d = {"key": "value"}
+Sets: set
+Example: s = {1, 2, 3}
+Byte Arrays: bytearray
+Example: ba = bytearray(b'hello')
+
+
+=>Custom Objects: Instances of user-defined classes may also be mutable, 
+depending on how the class is implemented.
+
+Summary of Behavior:
+Immutable: The object’s value or state cannot be modified. Any operation that appears to change the 
+object will actually create a new object. Examples: integers, strings, tuples.
+
+Mutable: The object’s value or state can be changed in place without creating a new object. 
+Examples: lists, dictionaries, sets.
+'''
+#Understand the output in case of using immutable objects and shallow copy
+li = [1,2,3,4]
+li2 = li[:]  # Shallow copy
+li2[0] = 99
+print(li)   # Output: [1,2,3,4]
+print(li2)  # Output: [99, 2, 3, 4]
+
+#Understand the output in case of using mutable objects and shallow copy
+li = [[1, 2], [3, 4]] #list of lists
+li2 = li[:]  # Shallow copy
+li2[0][0] = 99
+print(li)   # Output: [[99, 2], [3, 4]]
+print(li2)  # Output: [[99, 2], [3, 4]]
+
+#Deep Copy example
+import copy
+li = [[1, 2], [3, 4]] #list of lists
+li2 = copy.deepcopy(li)  # Deep copy
+li2[0][0] = 99
+print(li)   # Output: [[1, 2], [3, 4]]
+print(li2)  # Output: [[99, 2], [3, 4]]
+
 
 # Remove arbitrary elements from a list with "del"
 del li[2]  # li is now [1, 2, 3]
